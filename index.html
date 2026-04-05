@@ -75,7 +75,7 @@
 
       document.getElementById("msg").innerText = "전송 중...";
 
-      fetch("👉https://script.google.com/macros/s/AKfycbyL5kbF2plGID8A10ZeUhIG7-gyCGNjychw7bBcWfzMujrmUfTXZuVPo633mWhAW1IM_A/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbyL5kbF2plGID8A10ZeUhIG7-gyCGNjychw7bBcWfzMujrmUfTXZuVPo633mWhAW1IM_A/exec", {
         method: "POST",
         body: JSON.stringify({ question: question }),
       })
