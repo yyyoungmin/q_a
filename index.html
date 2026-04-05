@@ -1,17 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>제목</title>
-	<meta name="description" content="설명">
-	<meta name="keywords" content="키워드1, 키워드2">
-	<meta property="og:image" content="">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="stylesheet" href="style.css">
-	<link rel="icon" type="image/png" href="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&A</title>
 
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      text-align: center;
+		margin-top:0;
+    }
+
+    textarea, button {
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+
+    textarea {
+      height: 180px;
+      padding: 14px;
+      font-size: 16px;
+      background: #fff9c4;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 14px;
+      font-size: 16px;
+      background: #069ad4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      margin-top: 10px;
+    }
+	  .highlight{
+ 	 color: #069ad4;
+}
+  </style>
 </head>
-<body>
 
+<body>
+	<p>Q&A</p>
+  <h1><span class="highlight">영민</span><영민에게 궁금한 것을 물어보세요</h1>
+
+  <textarea id="question" placeholder="질문을 입력하세요"></textarea>
+  <button onclick="send()">전송</button>
+
+  <div id="msg"></div>
+
+  <script>
+    function send() {
+      const question = document.getElementById("question").value.trim();
+
+      if (!question) {
+        document.getElementById("msg").innerText = "질문을 입력해주세요!";
+        return;
+      }
+
+      document.getElementById("msg").innerText = "전송 중...";
+
+      fetch("👉https://script.google.com/macros/s/AKfycbyL5kbF2plGID8A10ZeUhIG7-gyCGNjychw7bBcWfzMujrmUfTXZuVPo633mWhAW1IM_A/exec", {
+        method: "POST",
+        body: JSON.stringify({ question: question }),
+      })
+      .then(res => res.json())
+      .then(() => {
+        document.getElementById("msg").innerText = "전송되었습니다!";
+        document.getElementById("question").value = "";
+      })
+      .catch(() => {
+        document.getElementById("msg").innerText = "오류 발생 😢";
+      });
+    }
+  </script>
 </body>
 </html>
